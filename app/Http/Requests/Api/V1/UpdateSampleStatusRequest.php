@@ -17,4 +17,12 @@ class UpdateSampleStatusRequest extends FormRequest
             'status' => 'required|in:pending,in_progress,completed,cancelled',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'status.required' => 'The status field is required.',
+            'status.in'       => 'Invalid status. Valid values are: pending, in_progress, completed, cancelled.',
+        ];
+    }
 }

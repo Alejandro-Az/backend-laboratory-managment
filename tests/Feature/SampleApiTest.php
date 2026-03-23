@@ -99,7 +99,7 @@ class SampleApiTest extends TestCase
         $response->assertStatus(422);
         $response->assertJsonPath('ok', false);
         $response->assertJsonPath('error.code', 'VALIDATION_ERROR');
-        $response->assertJsonPath('error.details.code.0', 'The code has already been taken.');
+        $response->assertJsonPath('error.details.code.0', 'This sample code is already in use.');
     }
 
     #[Test]

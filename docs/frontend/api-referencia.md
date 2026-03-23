@@ -220,6 +220,7 @@ Requieren `auth`. Admin tiene acceso completo. Analyst solo puede listar y ver.
       },
       "latest_result_at": "2026-03-18T...|null",
       "results_count": 2,
+      "rejection_count": 0,
       "created_by_name": "Admin User",
       "updated_at": "2026-03-18T..."
     }
@@ -229,6 +230,7 @@ Requieren `auth`. Admin tiene acceso completo. Analyst solo puede listar y ver.
 ```
 
 > `latest_result_summary` es `null` si la muestra no tiene resultados todavía.
+> `rejection_count`: número de veces que la muestra regresó de `in_progress` a `pending`. Útil para mostrar un badge de retrabajo en la tabla.
 
 ### GET /samples/{id} *(auth)*
 
@@ -249,6 +251,7 @@ Devuelve el detalle completo incluyendo historial de resultados.
   "notes": "string|null",
   "analysis_started_at": "2026-03-18T...|null",
   "completed_at": null,
+  "rejection_count": 2,
   "latest_result_summary": { "result_summary": "...", "analyzed_at": "...", "analyst_name": "..." },
   "latest_result_at": "...|null",
   "results_count": 1,
@@ -389,12 +392,14 @@ Requieren `auth`. Accesibles para admin y analyst (permiso `dashboard.view`).
   "total_samples": 120,
   "urgent_samples": 8,
   "pending_analysis": 34,
-  "completion_rate": 65
+  "completion_rate": 65,
+  "rejection_rate": 12
 }
 ```
 
 - `completion_rate`: entero 0–100 (porcentaje de muestras completadas)
 - `pending_analysis`: muestras con status `pending` + `in_progress`
+- `rejection_rate`: entero 0–100 (% de muestras con `rejection_count > 0` — "Tasa de Incidencias/Rechazos")
 
 ### GET /dashboard/recent-samples
 
