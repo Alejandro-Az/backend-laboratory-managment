@@ -17,4 +17,12 @@ class UpdateSamplePriorityRequest extends FormRequest
             'priority' => 'required|in:standard,urgent',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'priority.required' => 'The priority field is required.',
+            'priority.in'       => 'Invalid priority. Valid values are: standard, urgent.',
+        ];
+    }
 }

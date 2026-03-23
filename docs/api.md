@@ -41,6 +41,7 @@ Todos los endpoints requieren JWT (`auth:api`) y permiso `dashboard.view`.
 - `urgent_samples`
 - `pending_analysis` (`pending` + `in_progress`)
 - `completion_rate` (entero, 0 si no hay muestras)
+- `rejection_rate` (entero, % de muestras con `rejection_count > 0` sobre el total; 0 si no hay muestras)
 
 ### GET /api/v1/dashboard/recent-samples
 

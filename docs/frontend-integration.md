@@ -49,6 +49,38 @@ El cliente HTTP debe leer siempre `ok` para determinar el resultado.
 | `INVALID_CREDENTIALS` | 401 | Login con credenciales incorrectas |
 | `INVALID_PASSWORD` | 422 | `change-password` con contraseña actual incorrecta |
 
+### Mensajes de validación por campo
+
+Los errores de validación llegan en `error.details` como un objeto con arrays por campo. El frontend puede mapearlos directamente a los inputs del formulario.
+
+**Mensajes relevantes para muestras (`/samples`):**
+
+| Campo | Situación | Mensaje |
+|-------|-----------|---------|
+| `project_id` | No enviado | `"A project is required."` |
+| `project_id` | No existe o está eliminado | `"The selected project does not exist or has been deleted."` |
+| `code` | No enviado | `"The sample code is required."` |
+| `code` | Ya en uso | `"This sample code is already in use."` |
+| `code` | Supera 100 caracteres | `"The sample code must not exceed 100 characters."` |
+| `priority` | No enviado | `"The priority field is required."` |
+| `priority` | Valor inválido | `"Invalid priority. Valid values are: standard, urgent."` |
+| `received_at` | No enviado | `"The received date is required."` |
+| `received_at` | Formato inválido | `"The received date must be a valid date."` |
+
+**Mensajes para cambio de status (`PATCH /samples/{id}/status`):**
+
+| Campo | Situación | Mensaje |
+|-------|-----------|---------|
+| `status` | No enviado | `"The status field is required."` |
+| `status` | Valor inválido | `"Invalid status. Valid values are: pending, in_progress, completed, cancelled."` |
+
+**Mensajes para cambio de priority (`PATCH /samples/{id}/priority`):**
+
+| Campo | Situación | Mensaje |
+|-------|-----------|---------|
+| `priority` | No enviado | `"The priority field is required."` |
+| `priority` | Valor inválido | `"Invalid priority. Valid values are: standard, urgent."` |
+
 ---
 
 ## Paginación
@@ -110,6 +142,8 @@ El frontend debe leer `data.user.roles` del login (o de `GET /me`) y ajustar la 
 - `status` válidos: `pending`, `in_progress`, `completed`, `cancelled`
 - `priority` válidos: `standard`, `urgent`
 - Las métricas del dashboard son siempre calculadas en backend; no cachear ni calcular en frontend
+- `rejection_count` en `samples`: contador de ciclos de control de calidad. Se incrementa automáticamente cada vez que el `status` regresa de `in_progress` a `pending`. El frontend puede mostrarlo como indicador de retrabajo en la vista de detalle de muestra.
+- `rejection_rate` en las métricas del dashboard: porcentaje de muestras con `rejection_count > 0` sobre el total. Entero 0–100. Corresponde a la "Tasa de Incidencias/Rechazos".
 
 ---
 
