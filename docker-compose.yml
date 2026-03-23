@@ -42,6 +42,19 @@ services:
     networks:
       - labmgmt
 
+  frontend:
+    build:
+      context: ../laboratory-managment-frontend
+      dockerfile: Dockerfile
+      args:
+        # El navegador del usuario hace las llamadas a la API,
+        # por eso apunta a localhost (host) y no al nombre interno del contenedor.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000/api/v1}
+    container_name: labmgmt_frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+
 networks:
   labmgmt:
     driver: bridge
