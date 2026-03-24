@@ -39,6 +39,14 @@ La API queda disponible en `http://localhost:8000/api/v1`.
 
 ## Instalación con Docker
 
+Requiere que el repo del frontend esté en una carpeta hermana:
+
+```
+proyectos/
+  ├── laboratory-managment/           ← este repo (backend)
+  └── laboratory-managment-frontend/  ← repo del frontend
+```
+
 ```bash
 cp .env.example .env
 # Configurar DB_CONNECTION=mysql y credenciales en .env
@@ -50,7 +58,10 @@ docker-compose exec app php artisan jwt:secret
 docker-compose exec app php artisan migrate:fresh --seed
 ```
 
-La API queda disponible en `http://localhost:8000`.
+| Servicio | URL |
+|----------|-----|
+| API | `http://localhost:8000` |
+| Frontend | `http://localhost:3000` |
 
 ---
 
