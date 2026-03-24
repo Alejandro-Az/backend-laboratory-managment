@@ -1,6 +1,6 @@
 # Diagrama de base de datos — dbdiagram.io
 
-Copia y pega el bloque de abajo en https://dbdiagram.io/d
+Usar https://dbdiagram.io/d para tener una vista mejor del diagrama
 
 ```
 Table users {
