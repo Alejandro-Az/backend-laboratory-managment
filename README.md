@@ -182,6 +182,22 @@ Métricas: `total_samples`, `urgent_samples`, `pending_analysis`, `completion_ra
 
 ---
 
+## Demo en producción
+
+| Servicio | Plataforma | URL |
+|----------|------------|-----|
+| API (backend) | Hostinger | `https://api.alejandroazuara.dev` |
+| Frontend | Vercel | `https://frontend-laboratory-managment.vercel.app` |
+
+**Credenciales de demo:**
+
+| Email | Password | Rol |
+|-------|----------|-----|
+| admin@laboratory.local | password | admin |
+| analyst@laboratory.local | password | analyst |
+
+---
+
 ## Roles y permisos
 
 | Acción | admin | analyst |

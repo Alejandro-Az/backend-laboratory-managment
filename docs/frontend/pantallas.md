@@ -24,6 +24,8 @@ Todas las pantallas autenticadas comparten el mismo layout:
 
 El sidebar muestra los mismos ítems para ambos roles. Las restricciones se aplican dentro de cada pantalla (ocultando botones de acción que el analyst no puede usar).
 
+**Cerrar sesión:** el botón de logout está en el **Topbar**, al hacer clic sobre el nombre o avatar del usuario autenticado. Llama a `POST /auth/logout` e invalida el token en el servidor, luego limpia localStorage y redirige a `/login`.
+
 ---
 
 ## Rutas sugeridas
